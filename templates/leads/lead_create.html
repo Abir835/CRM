@@ -5,6 +5,9 @@
     <title>Lead Create</title>
 </head>
 <body>
+<a href="{% url 'lead_list' %}">Back Lead List</a>
+
+<hr>
 <h1>Create List</h1>
 <form method="post">
     {% csrf_token %}

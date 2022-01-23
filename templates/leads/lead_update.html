@@ -5,6 +5,8 @@
     <title>Lead Update</title>
 </head>
 <body>
+<a href="{% url 'lead_list' %}">Back Lead List</a>
+<hr>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
