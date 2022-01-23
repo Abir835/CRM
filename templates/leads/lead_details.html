@@ -12,5 +12,6 @@
     <p>Last Name: {{ lead_details.last_name }}</p>
     <p>Age: {{ lead_details.age }}</p>
     <p>Agent: {{ lead_details.agent }}</p>
+    <a href="{% url 'lead_update' lead_details.pk %}"><button>Update</button></a>
 </body>
 </html>

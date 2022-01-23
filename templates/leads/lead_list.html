@@ -19,6 +19,6 @@
     <a href="lead_details/{{ lead.id }}">{{ lead.first_name }} {{ lead.last_name }}</a>
 </div>
 {% endfor %}
-
+<a class="lead_create" href="{% url 'lead_create' %}"><button>Create Lead</button></a>
 </body>
 </html>
