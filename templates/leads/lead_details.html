@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lead Details</title>
+</head>
+<body>
+<a href="{% url 'lead_list' %}">Go Back Lead</a>
+<hr>
+<h1>Lead Details</h1>
+    <p>First Name: {{ lead_details.first_name }}</p>
+    <p>Last Name: {{ lead_details.last_name }}</p>
+    <p>Age: {{ lead_details.age }}</p>
+    <p>Agent: {{ lead_details.agent }}</p>
+</body>
+</html>
