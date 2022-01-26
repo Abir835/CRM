@@ -1,24 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-    <style>
-        .lead{
-            padding: 10px 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-<h1>This is all our leads</h1>
-{% for lead in leads %}
-<div class="lead">
-    <a href="lead_details/{{ lead.id }}">{{ lead.first_name }} {{ lead.last_name }}</a>
-</div>
-{% endfor %}
-<a class="lead_create" href="{% url 'lead_create' %}"><button>Create Lead</button></a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="cl-md-12" style="display: flex">
+            <div>
+                <h5 class="pt-5" style="font-family: 'Bitstream Charter'">This is all our leads</h5>
+            </div>
+            <div style="position: absolute; right: 9%; padding-top: 4%">
+                <a class="lead_create" href="{% url 'lead_create' %}" style="text-decoration: none">Create New Lead <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="row">
+            {% for lead in leads %}
+            <div class="col-sm-6 pt-3" >
+                <div class="card" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ lead.first_name }} {{ lead.last_name }}</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="{% url 'lead_details' lead.id %}" class="" style="text-decoration: none">view more lead details <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+{#            <div class="col-sm-6">#}
+{#                <div class="card">#}
+{#                    <div class="card-body">#}
+{#                        <h5 class="card-title">Special title treatment</h5>#}
+{#                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
+{#                        <a href="#" class="btn btn-primary">Go somewhere</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+        {#        <h1>This is all our leads</h1>#}
+        {#        {% for lead in leads %}#}
+        {#            <div class="lead">#}
+        {#                <a href="{% url 'lead_details' lead.id %}">{{ lead.first_name }} {{ lead.last_name }}</a>#}
+        {#            </div>#}
+        {#        {% endfor %}#}
+        {#        <a class="lead_create" href="{% url 'lead_create' %}">#}
+        {#            <button>Create Lead</button>#}
+        {#        </a>#}
+
+    </div>
+{% endblock content %}

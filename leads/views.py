@@ -6,6 +6,8 @@ from leads.forms import LeadForm, LeadModelForm
 
 
 # Create your views here.
+def lead_home(request):
+    return render(request, 'leads/lead_home.html')
 
 
 def lead_list(request):
@@ -19,7 +21,7 @@ def lead_list(request):
 def lead_details(request, pk):
     lead = Lead.objects.get(id=pk)
     context = {
-        'lead_details': lead,
+        'lead_detail': lead,
     }
     return render(request, 'leads/lead_details.html', context)
 
@@ -78,7 +80,8 @@ def lead_update(request, pk):
             form.save()
             return redirect('/leads')
     context = {
-        'form': form
+        'form': form,
+        'lead': lead,
     }
     return render(request, 'leads/lead_update.html', context)
 

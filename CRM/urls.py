@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from leads.views import lead_home
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', lead_home),
     path('leads/', include('leads.urls')),
 ]

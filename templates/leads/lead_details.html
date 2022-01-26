@@ -1,18 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lead Details</title>
-</head>
-<body>
-<a href="{% url 'lead_list' %}">Go Back Lead</a>
-<hr>
-<h1>Lead Details</h1>
-    <p>First Name: {{ lead_details.first_name }}</p>
-    <p>Last Name: {{ lead_details.last_name }}</p>
-    <p>Age: {{ lead_details.age }}</p>
-    <p>Agent: {{ lead_details.agent }}</p>
-    <a href="{% url 'lead_update' lead_details.pk %}"><button>Update</button></a>
-    <a href="{% url 'lead_delete' lead_details.pk %}"><button>Delete</button></a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container pt-5">
+        <h5 style="color: greenyellow; font-family: 'Bitstream Charter'; text-align: center">Lead</h5>
+        <div style="display: flex; justify-content: center; ">
+            <div class="card mb-3" style="max-width: 560px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="..." class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ lead_detail.first_name }} {{ lead_detail.last_name }}</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Age: {{ lead_detail.age }}</small>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Agent: {{ lead_detail.agent }}</small>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Location: Dhaka</small>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Phone: +880 16236705**</small>
+                        </div>
+                        <div class="card-footer" style="display: flex">
+                            <div>
+                                <a href="{% url 'lead_list' %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i>
+                                    Back</a>&nbsp;&nbsp;
+                                <a href="{% url 'lead_update' lead_detail.pk %}" style="text-decoration: none;">Update
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div style="position: absolute; right: 4%;">
+                                <a href="{% url 'lead_delete' lead_detail.pk %}" style="text-decoration: none">Delete <i
+                                        class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#<a href="{% url 'lead_list' %}">Go Back Lead</a>#}
+    {#<hr>#}
+    {#<h1>Lead Details</h1>#}
+    {#    <p>First Name: {{ lead_detail.first_name }}</p>#}
+    {#    <p>Last Name: {{ lead_detail.last_name }}</p>#}
+    {#    <p>Age: {{ lead_detail.age }}</p>#}
+    {#    <p>Agent: {{ lead_detail.agent }}</p>#}
+    {#    <a href="{% url 'lead_update' lead_detail.pk %}"><button>Update</button></a>#}
+    {#    <a href="{% url 'lead_delete' lead_detail.pk %}"><button>Delete</button></a>#}
+
+{% endblock content %}

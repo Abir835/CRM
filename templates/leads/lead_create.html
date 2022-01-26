@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lead Create</title>
-</head>
-<body>
-<a href="{% url 'lead_list' %}">Back Lead List</a>
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+<a href="{% url 'lead_list' %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp;Back Lead List</a>
 
 <hr>
-<h1>Create List</h1>
+<h5 class="pt-2">Create List</h5>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-</body>
-</html>
+</div>
+{% endblock content %}
