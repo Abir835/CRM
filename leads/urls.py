@@ -1,10 +1,10 @@
 from django.urls import path
 from leads import views
 urlpatterns = [
-    path('', views.lead_list, name='lead_list'),
-    path('lead_details/<int:pk>/', views.lead_details, name='lead_details'),
-    path('lead_create/', views.lead_create, name='lead_create'),
-    path('lead_update/<int:pk>/', views.lead_update, name='lead_update'),
-    path('lead_delete/<int:pk>', views.lead_delete, name='lead_delete')
+    path('', views.LeadListView.as_view(), name='lead_list'),
+    path('lead_details/<int:pk>/', views.LeadDetailView.as_view(), name='lead_details'),
+    path('lead_create/', views.LeadCreateView.as_view(), name='lead_create'),
+    path('lead_update/<int:pk>/', views.LeadUpdateView.as_view(), name='lead_update'),
+    path('lead_delete/<int:pk>', views.LeadDeleteView.as_view(), name='lead_delete')
 
 ]

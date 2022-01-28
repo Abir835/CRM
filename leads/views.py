@@ -1,13 +1,38 @@
-from django.shortcuts import render
+from django.core.mail import send_mail
+from django.shortcuts import render, reverse
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from leads.models import *
-from leads.forms import LeadForm, LeadModelForm
+from leads.forms import LeadForm, LeadModelForm, CustomUserCreationFrom
+from django.views.generic import CreateView, UpdateView, ListView, DetailView, TemplateView, DeleteView
+from django.views import generic
+# CRUD+L:  Create Update Delete Retrieve + List view
 
 
 # Create your views here.
+class RegistrationForm(generic.CreateView):
+    template_name = 'registration/registration.html'
+    form_class = CustomUserCreationFrom
+
+    def get_success_url(self):
+        return reverse('login')
+
+
+class LandingPageView(TemplateView):
+    template_name = 'leads/lead_home.html'
+
+
+
 def lead_home(request):
     return render(request, 'leads/lead_home.html')
+
+
+class LeadListView(ListView):
+    template_name = 'leads/lead_list.html'
+    # list view gives context name = object_list
+    queryset = Lead.objects.all().order_by('-id')
+    # customise context
+    context_object_name = 'leads'
 
 
 def lead_list(request):
@@ -18,6 +43,12 @@ def lead_list(request):
     return render(request, 'leads/lead_list.html', context)
 
 
+class LeadDetailView(DetailView):
+    template_name = 'leads/lead_details.html'
+    queryset = Lead.objects.all()
+    context_object_name = 'lead_detail'
+
+
 def lead_details(request, pk):
     lead = Lead.objects.get(id=pk)
     context = {
@@ -25,6 +56,22 @@ def lead_details(request, pk):
     }
     return render(request, 'leads/lead_details.html', context)
 
+
+class LeadCreateView(CreateView):
+    template_name = 'leads/lead_create.html'
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse('lead_list')
+
+    def form_valid(self, form):
+        send_mail(
+            subject="hello abir",
+            message="hello",
+            from_email='abirhasan.raj.bd@gmail.com',
+            recipient_list=["abirhasan.raj.bd@gmail.com"]
+        )
+        return super(LeadCreateView, self).form_valid(form)
 
 def lead_create(request):
     form = LeadModelForm()
@@ -70,6 +117,15 @@ def lead_create(request):
 #     }
 #     return render(request, 'leads/lead_create.html', context)
 
+class LeadUpdateView(UpdateView):
+    template_name = 'leads/lead_update.html'
+    form_class = LeadModelForm
+    queryset = Lead.objects.all()
+    context_object_name = 'lead'
+
+    def get_success_url(self):
+        return reverse('lead_list')
+
 
 def lead_update(request, pk):
     lead = Lead.objects.get(id=pk)
@@ -103,6 +159,14 @@ def lead_update(request, pk):
 #         'form': form
 #     }
 #     return render(request, 'leads/lead_update.html', context)
+
+
+class LeadDeleteView(DeleteView):
+    template_name = 'leads/lead_delete.html'
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse('lead_list')
 
 
 def lead_delete(request, pk):

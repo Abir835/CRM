@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <a href="{% url 'lead_details' lead.id %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp;Back Lead List {{ lead.first_name }} {{ lead.last_name }}</a><br>
+        <hr>
+        Lead Update: {{ lead.first_name }} {{ lead.last_name }}
+
+        <hr>
+        <p>are you sure delete?</p>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+    </div>
+
+{% endblock content %}
