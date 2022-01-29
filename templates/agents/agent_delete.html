@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <a href="{% url 'agents:agent_detail' delete_agent.id %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp;Back Agent List {{ update_agent.user.username }}</a><br>
+        <hr>
+        Lead Delete: {{ delete_agent.user.username }}
+
+        <hr>
+        <p>are you sure delete?</p>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+    </div>
+
+{% endblock content %}

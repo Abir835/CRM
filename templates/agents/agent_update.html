@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container">
-        <a href="{% url 'lead_details' lead.id %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp;Back Lead List {{ lead.first_name }} {{ lead.last_name }}</a><br>
+        <a href="{% url 'agents:agent_detail' update_agent.id %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp;Back agent List {{ update_agent.user.username }}</a><br>
         <hr>
-        Lead Update: {{ lead.first_name }}
+        Lead Update: {{ update_agent.user.username }}
 
         <hr>
         <form method="post">

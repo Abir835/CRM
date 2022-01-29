@@ -6,6 +6,7 @@ from leads.models import *
 from leads.forms import LeadForm, LeadModelForm, CustomUserCreationFrom
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, TemplateView, DeleteView
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 # CRUD+L:  Create Update Delete Retrieve + List view
 
 
@@ -22,12 +23,11 @@ class LandingPageView(TemplateView):
     template_name = 'leads/lead_home.html'
 
 
-
 def lead_home(request):
     return render(request, 'leads/lead_home.html')
 
 
-class LeadListView(ListView):
+class LeadListView(LoginRequiredMixin, ListView):
     template_name = 'leads/lead_list.html'
     # list view gives context name = object_list
     queryset = Lead.objects.all().order_by('-id')
@@ -43,7 +43,7 @@ def lead_list(request):
     return render(request, 'leads/lead_list.html', context)
 
 
-class LeadDetailView(DetailView):
+class LeadDetailView(LoginRequiredMixin, DetailView):
     template_name = 'leads/lead_details.html'
     queryset = Lead.objects.all()
     context_object_name = 'lead_detail'
@@ -57,7 +57,7 @@ def lead_details(request, pk):
     return render(request, 'leads/lead_details.html', context)
 
 
-class LeadCreateView(CreateView):
+class LeadCreateView(LoginRequiredMixin, CreateView):
     template_name = 'leads/lead_create.html'
     form_class = LeadModelForm
 
@@ -72,6 +72,7 @@ class LeadCreateView(CreateView):
             recipient_list=["abirhasan.raj.bd@gmail.com"]
         )
         return super(LeadCreateView, self).form_valid(form)
+
 
 def lead_create(request):
     form = LeadModelForm()
@@ -117,7 +118,7 @@ def lead_create(request):
 #     }
 #     return render(request, 'leads/lead_create.html', context)
 
-class LeadUpdateView(UpdateView):
+class LeadUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'leads/lead_update.html'
     form_class = LeadModelForm
     queryset = Lead.objects.all()
@@ -161,7 +162,7 @@ def lead_update(request, pk):
 #     return render(request, 'leads/lead_update.html', context)
 
 
-class LeadDeleteView(DeleteView):
+class LeadDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'leads/lead_delete.html'
     queryset = Lead.objects.all()
 
