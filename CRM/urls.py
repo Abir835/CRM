@@ -19,7 +19,11 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from leads.views import lead_home, LandingPageView, RegistrationForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import (LoginView, LogoutView,
+                                       PasswordResetView,
+                                       PasswordResetDoneView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetCompleteView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +33,10 @@ urlpatterns = [
     path('registration/', RegistrationForm.as_view(), name='registration'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('reset-pssword/', PasswordResetView.as_view(), name='reset-password'),
+    path('password_reset_done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
+    path('password_reset_complete/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
 
 if settings.DEBUG:

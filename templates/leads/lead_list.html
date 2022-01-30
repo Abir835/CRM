@@ -6,9 +6,11 @@
             <div>
                 <h5 class="pt-5" style="font-family: 'Bitstream Charter'">This is all our leads</h5>
             </div>
+            {% if request.user.is_organizer %}
             <div style="position: absolute; right: 9%; padding-top: 4%">
                 <a class="lead_create" href="{% url 'lead_create' %}" style="text-decoration: none">Create New Lead <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
             </div>
+            {% endif %}
         </div>
         <div class="row">
             {% for lead in leads %}

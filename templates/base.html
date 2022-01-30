@@ -31,12 +31,16 @@
                             </a>
                         </li>
                     {% else %}
+
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'lead_list' %}">Leads</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'agents:agent_list' %}">Agents</a>
-                        </li>
+
+                        {% if request.user.is_organizer %}
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{% url 'agents:agent_list' %}">Agents</a>
+                            </li>
+                        {% endif %}
                     {% endif %}
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">

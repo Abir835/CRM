@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container">
-        <a href="{% url 'agents:agent_detail' delete_agent.id %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp;Back Agent List {{ update_agent.user.username }}</a><br>
+        <a href="{% url 'agents:agent_detail' delete_agent.id %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i> &nbsp;Back Agent List {{ delete_agent.user.username }}</a><br>
         <hr>
         Lead Delete: {{ delete_agent.user.username }}
 
