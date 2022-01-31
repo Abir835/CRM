@@ -5,6 +5,7 @@
         <div class="cl-md-12" style="display: flex">
             <div>
                 <h5 class="pt-5" style="font-family: 'Bitstream Charter'">This is all our leads</h5>
+                <a style="text-decoration: none" href="{% url 'category' %}"><h5  style="font-family: 'Bitstream Charter'">Categories</h5></a>
             </div>
             {% if request.user.is_organizer %}
                 <div style="position: absolute; right: 9%; padding-top: 4%">

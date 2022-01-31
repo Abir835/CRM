@@ -38,3 +38,11 @@ class AssignAgentForm(forms.Form):
         agent = Agent.objects.filter(organization=request.user.userprofile)
         super(AssignAgentForm, self).__init__(*args, **kwargs)
         self.fields['agent'].queryset = agent
+
+
+class LeadUpdateModelForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = (
+            'category',
+        )

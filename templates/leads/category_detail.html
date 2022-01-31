@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container">
+        <table class="table table-striped">
+            <h6 class="category">{{ category_list.name }}</h6>
+            <h6 class="category">This is Lead based on Category</h6>
+            <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Action</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in category_list.leads.all %}
+                <tr>
+                    <td>{{ category.first_name }}</td>
+                    <td>{{ category.last_name }}</td>
+                    <td><a href="{% url 'category_update' category.id%}" style="text-decoration: none;">Update
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a></td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

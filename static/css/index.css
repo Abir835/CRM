@@ -16,3 +16,10 @@
     text-align: center;
     font-family: math;
 }
+
+.category{
+    text-align: center;
+    font-weight: 600;
+    padding-top: 3%;
+    font-family: 'FontAwesome';
+}
