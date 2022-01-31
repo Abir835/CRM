@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container">
+        <a href="{% url 'lead_list' %}" style="text-decoration: none"><i class="fa fa-backward" aria-hidden="true"></i>
+            &nbsp;Back Lead List</a>
+
+        <hr>
+        <h5 class="pt-2">Assign Agent</h5>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock content %}
